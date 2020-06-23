@@ -314,7 +314,7 @@ int main() {
 		for (uint8_t k = 0; k < 8; k++) {
 			for (uint8_t j = 0; j < 6; j++) {
 				if (0 != getBit(Font6x8[i * 8 + k], j+10) )
-					setBit(table1[i * 6 + (6 - j)], k+8);
+					setBit(table1[i * 6 + (5 - j)], k+8);
 			}
 		}
 	}
