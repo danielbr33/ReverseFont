@@ -303,7 +303,6 @@ int main() {
 	plik2.open("Font7x10.txt", ios::out);
 
 	uint8_t size = 127 - 32;
-
 	uint16_t *table1;
 	uint16_t* table2;
 
@@ -318,35 +317,37 @@ int main() {
 			}
 		}
 	}
+	plik1 << "static uint16_t Font6x8[] = {" << endl << "\t";
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t j = 0; j < 6; j++) {
-			plik1 << (int) table1[i*6+j];
+			plik1 << (int)table1[i * 6 + j] << ",\t";
 			cout << (int) table1[i*6+j] << "\t";
-			plik1 << "\t";
 		}
-		plik1 << endl;
+		plik1 <<"//\t"<< (char)(i + 32) << endl << "\t";
 		cout << (char)(i+32) << endl;
 	}
-	/*
+	plik1 << "}";
+	
+	cout << endl << endl << "\t";
+	plik2 << "static uint16_t Font7x10[] = {" << endl << "\t";
 	table2 = new uint16_t[size * 7];
 	for (uint16_t i = 0; i < size * 7; i++)
 		table2[i] = 0;
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t k = 0; k < 10; k++) {
 			for (uint8_t j = 0; j < 7; j++) {
-				if (0 != getBit(Font6x8[i * 10 + k], j + 8))
-					setBit(table2[i * 7 + (7 - j)], k+7);
+				if (0 != getBit(Font7x10[i * 10 + k], j + 9))
+					setBit(table2[i * 7 + (6 - j)], k + 7);
 			}
 		}
 	}
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t j = 0; j < 7; j++) {
-			plik2 << table2[i * 7 + j];
-			cout << table2[i * 7 + j] << "\t";
-			plik2 << "\t";
+			plik2 << (int)table2[i * 7 + j] << ",\t";
+			cout << (int)table2[i * 7 + j] << "\t";
 		}
-		plik1 << endl;
-		cout << endl;
+		plik2 << "//\t" << (char)(i + 32) << endl << "\t";
+		cout << (char)(i + 32) << endl;
 	}
-	*/
+	plik2<< "}";
 }
