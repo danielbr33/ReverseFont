@@ -323,10 +323,10 @@ int main() {
 	plik1 << "static uint16_t Font6x8[] = {" << endl << "\t";
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t j = 0; j < 6; j++) {
-			plik1 << (int)table1[i * 6 + j] << ",\t";
+			plik1 << "0x" << hex << (int)table1[i * 6 + j] << ",\t";
 			cout << (int) table1[i*6+j] << "\t";
 		}
-		plik1 <<"//\t"<< (char)(i + 32) << endl << "\t";
+		plik1 << "//\t" << (char)(i + 32) << endl << "\t";
 		cout << (char)(i+32) << endl;
 	}
 	plik1 << "}";
@@ -346,7 +346,7 @@ int main() {
 	}
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t j = 0; j < 7; j++) {
-			plik2 << (int)table2[i * 7 + j] << ",\t";
+			plik2 << "0x" << hex << (int)table2[i * 7 + j] << ",\t";
 			cout << (int)table2[i * 7 + j] << "\t";
 		}
 		plik2 << "//\t" << (char)(i + 32) << endl << "\t";
@@ -370,11 +370,16 @@ int main() {
 	}
 	for (uint8_t i = 0; i < size; i++) {
 		for (uint8_t j = 0; j < 11; j++) {
-			plik3 << (int)table3[i * 11 + j] << ",\t";
+			plik3 << "0x" << hex << (int)table3[i * 11 + j] << ",\t";
 			cout << (int)table3[i * 11 + j] << "\t";
 		}
 		plik3 << "//\t" << (char)(i + 32) << endl << "\t";
 		cout << (char)(i + 32) << endl;
 	}
 	plik3 << "}";
+
+
+	plik1.close();
+	plik2.close();
+	plik3.close();
 }
