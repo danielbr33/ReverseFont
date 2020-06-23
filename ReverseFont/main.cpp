@@ -301,10 +301,13 @@ int main() {
 	plik1.open("Font6x8.txt", ios::out);
 	fstream plik2;
 	plik2.open("Font7x10.txt", ios::out);
+	fstream plik3;
+	plik3.open("Font11x18.txt", ios::out);
 
 	uint8_t size = 127 - 32;
 	uint16_t *table1;
 	uint16_t* table2;
+	uint32_t* table3;
 
 	table1 = new uint16_t [size * 6];
 	for (uint16_t i = 0; i < size * 6; i++)
@@ -350,4 +353,28 @@ int main() {
 		cout << (char)(i + 32) << endl;
 	}
 	plik2<< "}";
+
+
+	cout << endl << endl << "\t";
+	plik3 << "static uint16_t Font11x18[] = {" << endl << "\t";
+	table3 = new uint32_t[size * 11];
+	for (uint16_t i = 0; i < size * 11; i++)
+		table3[i] = 0;
+	for (uint8_t i = 0; i < size; i++) {
+		for (uint8_t k = 0; k < 18; k++) {
+			for (uint8_t j = 0; j < 11; j++) {
+				if (0 != getBit(Font11x18[i * 18 + k], j + 5))
+					setBit2(table3[i * 11 + (10 - j)], k + 15);
+			}
+		}
+	}
+	for (uint8_t i = 0; i < size; i++) {
+		for (uint8_t j = 0; j < 11; j++) {
+			plik3 << (int)table3[i * 11 + j] << ",\t";
+			cout << (int)table3[i * 11 + j] << "\t";
+		}
+		plik3 << "//\t" << (char)(i + 32) << endl << "\t";
+		cout << (char)(i + 32) << endl;
+	}
+	plik3 << "}";
 }
