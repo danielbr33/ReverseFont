@@ -316,7 +316,7 @@ int main() {
 		for (uint8_t k = 0; k < 8; k++) {
 			for (uint8_t j = 0; j < 6; j++) {
 				if (0 != getBit(Font6x8[i * 8 + k], j+10) )
-					setBit(table1[i * 6 + (5 - j)], k+8);
+					setBit(table1[i * 6 + (5 - j)], k);
 			}
 		}
 	}
@@ -340,7 +340,7 @@ int main() {
 		for (uint8_t k = 0; k < 10; k++) {
 			for (uint8_t j = 0; j < 7; j++) {
 				if (0 != getBit(Font7x10[i * 10 + k], j + 9))
-					setBit(table2[i * 7 + (6 - j)], k + 7);
+					setBit(table2[i * 7 + (6 - j)], k);
 			}
 		}
 	}
@@ -364,7 +364,7 @@ int main() {
 		for (uint8_t k = 0; k < 18; k++) {
 			for (uint8_t j = 0; j < 11; j++) {
 				if (0 != getBit(Font11x18[i * 18 + k], j + 5))
-					setBit2(table3[i * 11 + (10 - j)], k + 15);
+					setBit2(table3[i * 11 + (10 - j)], k);
 			}
 		}
 	}
